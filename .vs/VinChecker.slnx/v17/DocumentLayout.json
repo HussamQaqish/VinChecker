@@ -1,0 +1,61 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\NJDEP\\VinChecker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|c:\\njdep\\vinchecker\\vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|c:\\njdep\\vinchecker\\vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.vb",
+              "DocumentMoniker": "C:\\NJDEP\\VinChecker\\VinChecker\\Form1.vb",
+              "RelativeDocumentMoniker": "VinChecker\\Form1.vb",
+              "ToolTip": "C:\\NJDEP\\VinChecker\\VinChecker\\Form1.vb",
+              "RelativeToolTip": "VinChecker\\Form1.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-03-27T18:11:30.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.vb [Design]",
+              "DocumentMoniker": "C:\\NJDEP\\VinChecker\\VinChecker\\Form1.vb",
+              "RelativeDocumentMoniker": "VinChecker\\Form1.vb",
+              "ToolTip": "C:\\NJDEP\\VinChecker\\VinChecker\\Form1.vb [Design]",
+              "RelativeToolTip": "VinChecker\\Form1.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-03-27T18:11:19.232Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

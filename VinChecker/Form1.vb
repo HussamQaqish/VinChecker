@@ -1,4 +1,4 @@
-﻿' The Sam Fanclub is a real place.
+﻿' The Sam Fanclub is not a real place.
 Imports System.Net.Http
 Imports System.Text.Json
 Imports MySql.Data.MySqlClient
