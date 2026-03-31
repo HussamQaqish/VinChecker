@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Server=auditware5;Port=3306;Database=mvcextract;Uid=hqaqish;Pwd=NJd3pNJd3p;")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Server=auditware5;Port=3306;Database=mvcextract;Uid=npalko;pwd=njdep;")>  _
         Public Property ConnectionString() As String
             Get
                 Return CType(Me("ConnectionString"),String)

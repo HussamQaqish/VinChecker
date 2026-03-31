@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C11C974-6DA6-47A5-B2D5-1322E2FCEBA3}|VinChecker\\VinChecker.vbproj|C:\\Users\\hqaqish\\source\\repos\\VinChecker\\vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
-      "RelativeMoniker": "D:0:0:{0C11C974-6DA6-47A5-B2D5-1322E2FCEBA3}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
+      "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|c:\\users\\hqaqish\\source\\repos\\vinchecker\\vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|c:\\users\\hqaqish\\source\\repos\\vinchecker\\vinchecker\\vinchecker.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\vinchecker.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|c:\\users\\hqaqish\\source\\repos\\vinchecker\\vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\form1.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+      "AbsoluteMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|C:\\Users\\hqaqish\\source\\repos\\VinChecker\\vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
+      "RelativeMoniker": "D:0:0:{F71B3D40-20F5-D824-F4F2-033129789E9A}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C11C974-6DA6-47A5-B2D5-1322E2FCEBA3}|VinChecker\\VinChecker.vbproj|C:\\Users\\hqaqish\\source\\repos\\VinChecker\\vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
+      "RelativeMoniker": "D:0:0:{0C11C974-6DA6-47A5-B2D5-1322E2FCEBA3}|VinChecker\\VinChecker.vbproj|solutionrelative:vinchecker\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +30,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Form1.vb",
+              "DocumentMoniker": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb",
+              "RelativeDocumentMoniker": "VinChecker\\Form1.vb",
+              "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb*",
+              "RelativeToolTip": "VinChecker\\Form1.vb*",
+              "ViewState": "AgIAABYCAAAAAAAAAAAowCsCAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2026-03-24T15:06:46.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Settings.settings",
+              "DocumentMoniker": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\My Project\\Settings.settings",
+              "RelativeDocumentMoniker": "VinChecker\\My Project\\Settings.settings",
+              "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\My Project\\Settings.settings",
+              "RelativeToolTip": "VinChecker\\My Project\\Settings.settings",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
+              "WhenOpened": "2026-03-30T18:18:21.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Settings.settings",
               "DocumentMoniker": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\My Project\\Settings.settings",
               "RelativeDocumentMoniker": "VinChecker\\My Project\\Settings.settings",
@@ -48,29 +77,17 @@
               "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\VinChecker.vbproj",
               "RelativeToolTip": "VinChecker\\VinChecker.vbproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
-              "WhenOpened": "2026-03-25T16:41:08.49Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.vb",
-              "DocumentMoniker": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb",
-              "RelativeDocumentMoniker": "VinChecker\\Form1.vb",
-              "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb",
-              "RelativeToolTip": "VinChecker\\Form1.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2026-03-24T15:06:46.911Z",
+              "WhenOpened": "2026-03-25T16:41:08.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Form1.vb [Design]",
               "DocumentMoniker": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb",
               "RelativeDocumentMoniker": "VinChecker\\Form1.vb",
-              "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb [Design]",
-              "RelativeToolTip": "VinChecker\\Form1.vb [Design]",
+              "ToolTip": "C:\\Users\\hqaqish\\source\\repos\\VinChecker\\VinChecker\\Form1.vb [Design]*",
+              "RelativeToolTip": "VinChecker\\Form1.vb [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2026-03-24T15:06:28.454Z",
               "EditorCaption": " [Design]"

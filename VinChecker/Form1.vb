@@ -52,7 +52,27 @@ Public Class Form1
     ' -----------------------------------------------------------------------
     '  FORM LOAD
     ' -----------------------------------------------------------------------
+    'Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    '    SetupDGV(dgv1)
+    '    SetupDGV(dgv2)
+
+    '    AddHandler dgv1.Scroll, Sub(s, e2) pnlConnector.Invalidate()
+    '    AddHandler dgv2.Scroll, Sub(s, e2) pnlConnector.Invalidate()
+
+    '    pnlConnector.BackColor = Color.FromArgb(245, 245, 245)
+
+    '    txtYear.Visible = False
+    '    Label5.Visible = False
+    '    btnCheckCorrectedVin.Visible = False
+    '    btnCheckYear.Visible = False
+    'End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Explicitly rewire Tab 1 button handlers
+        AddHandler btnCheck.Click, AddressOf btnCheck_Click
+        AddHandler btnCheckYear.Click, AddressOf btnCheckYear_Click
+        AddHandler btnCheckCorrectedVin.Click, AddressOf btnCheckCorrectedVin_Click
+
+        ' Rest of your existing load code
         SetupDGV(dgv1)
         SetupDGV(dgv2)
 
@@ -65,8 +85,8 @@ Public Class Form1
         Label5.Visible = False
         btnCheckCorrectedVin.Visible = False
         btnCheckYear.Visible = False
-    End Sub
 
+    End Sub
     ' -----------------------------------------------------------------------
     '  GRID SETUP
     ' -----------------------------------------------------------------------
@@ -107,7 +127,7 @@ Public Class Form1
     ' -----------------------------------------------------------------------
     '  MAIN CHECK BUTTON
     ' -----------------------------------------------------------------------
-    Private Async Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
+    Private Async Sub btnCheck_Click(sender As Object, e As EventArgs)
         ' Reset UI
         dgv1.Rows.Clear()
         dgv2.Rows.Clear()
@@ -125,7 +145,7 @@ Public Class Form1
         _lastNhtsaFields = Nothing
         _lastInputVin = ""
 
-        Dim vin As String = txtVIN.Text.Trim().ToUpper()
+        Dim vin = txtVIN.Text.Trim.ToUpper
 
         If vin.Length <> 17 Then
             lblStatus.Text = "VIN must be exactly 17 characters."
@@ -133,9 +153,9 @@ Public Class Form1
             Return
         End If
 
-        Dim checkResult As (isValid As Boolean, message As String, expectedCheckDigit As String) = VinCheckDigit(vin)
+        Dim checkResult = VinCheckDigit(vin)
 
-        Dim partialVIN As String = MakePartialVin(vin)
+        Dim partialVIN = MakePartialVin(vin)
         txtPartialVin.Text = partialVIN
 
         ' Fetch NHTSA
@@ -173,11 +193,11 @@ Public Class Form1
         ' Determine discrepancies
         Dim discrepantFields As New HashSet(Of String)
         For Each kvp In fieldMap
-            Dim dbKey As String = kvp.Key
-            Dim nhtsaKey As String = kvp.Value
+            Dim dbKey = kvp.Key
+            Dim nhtsaKey = kvp.Value
             If Not dbFields.ContainsKey(dbKey) OrElse Not nhtsaFields.ContainsKey(nhtsaKey) Then Continue For
-            Dim dbVal As String = dbFields(dbKey)
-            Dim nhtsaVal As String = nhtsaFields(nhtsaKey)
+            Dim dbVal = dbFields(dbKey)
+            Dim nhtsaVal = nhtsaFields(nhtsaKey)
             If String.IsNullOrWhiteSpace(dbVal) OrElse String.IsNullOrWhiteSpace(nhtsaVal) Then Continue For
             If Not NormalizeValue(dbVal).Equals(NormalizeValue(nhtsaVal), StringComparison.OrdinalIgnoreCase) Then
                 discrepantFields.Add(dbKey)
@@ -194,13 +214,13 @@ Public Class Form1
         Next
 
         ' Populate both grids
-        For i As Integer = 0 To orderedKeys.Count - 1
-            Dim dbKey As String = orderedKeys(i)
-            Dim nhtsaKey As String = fieldMap(dbKey)
-            Dim dbVal As String = If(dbFields.ContainsKey(dbKey), dbFields(dbKey), "—")
-            Dim nhtsaVal As String = If(nhtsaFields.ContainsKey(nhtsaKey), nhtsaFields(nhtsaKey), "—")
-            Dim isDiscrepant As Boolean = discrepantFields.Contains(dbKey)
-            Dim bg As Color = If(isDiscrepant, Color.FromArgb(255, 200, 200), Color.White)
+        For i = 0 To orderedKeys.Count - 1
+            Dim dbKey = orderedKeys(i)
+            Dim nhtsaKey = fieldMap(dbKey)
+            Dim dbVal = If(dbFields.ContainsKey(dbKey), dbFields(dbKey), "—")
+            Dim nhtsaVal = If(nhtsaFields.ContainsKey(nhtsaKey), nhtsaFields(nhtsaKey), "—")
+            Dim isDiscrepant = discrepantFields.Contains(dbKey)
+            Dim bg = If(isDiscrepant, Color.FromArgb(255, 200, 200), Color.White)
 
             dgv1.Rows.Add(nhtsaKey, nhtsaVal)
             dgv1.Rows(i).DefaultCellStyle.BackColor = bg
@@ -210,7 +230,7 @@ Public Class Form1
         Next
 
         ' Add check digit row to dgv1 only
-        Dim checkBg As Color = If(checkResult.isValid, Color.FromArgb(220, 255, 220), Color.FromArgb(255, 200, 200))
+        Dim checkBg = If(checkResult.isValid, Color.FromArgb(220, 255, 220), Color.FromArgb(255, 200, 200))
         dgv1.Rows.Add("Check Digit", If(checkResult.isValid,
             $"✓ Valid ({checkResult.expectedCheckDigit})",
             $"✗ Invalid — expected '{checkResult.expectedCheckDigit}', found '{vin(8)}'"))
@@ -238,14 +258,14 @@ Public Class Form1
     '    - If position 10 matches the stated year → year is fine, VDS is suspect
     '    - If position 10 does not match          → year digit is wrong, suggest fix
     ' -----------------------------------------------------------------------
-    Private Sub btnCheckYear_Click(sender As Object, e As EventArgs) Handles btnCheckYear.Click
+    Private Sub btnCheckYear_Click(sender As Object, e As EventArgs)
         If String.IsNullOrWhiteSpace(_lastInputVin) OrElse _lastInputVin.Length <> 17 Then
             MessageBox.Show("Please run a VIN check first.", "No VIN loaded",
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
 
-        Dim yearText As String = txtYear.Text.Trim()
+        Dim yearText = txtYear.Text.Trim
         Dim modelYear As Integer
         If Not Integer.TryParse(yearText, modelYear) OrElse Not yearToVinChar.ContainsKey(modelYear) Then
             MessageBox.Show("Please enter a valid model year between 1980 and 2030.",
@@ -253,15 +273,15 @@ Public Class Form1
             Return
         End If
 
-        Dim expectedChar As String = yearToVinChar(modelYear)   ' what position 10 should be for this year
-        Dim actualChar As String = _lastInputVin(9).ToString()  ' what position 10 actually is
+        Dim expectedChar = yearToVinChar(modelYear)   ' what position 10 should be for this year
+        Dim actualChar = _lastInputVin(9).ToString  ' what position 10 actually is
 
         If expectedChar = actualChar Then
             ' Year digit is correct — the problem must be in the VDS (positions 4-8)
             ' Now we can safely use NHTSA's VDS correction signals
-            Dim nhtsaSuggestedVin As String = ""
+            Dim nhtsaSuggestedVin = ""
             If _lastNhtsaFields IsNot Nothing AndAlso _lastNhtsaFields.ContainsKey("Suggested VIN") Then
-                nhtsaSuggestedVin = _lastNhtsaFields("Suggested VIN").Trim().ToUpper()
+                nhtsaSuggestedVin = _lastNhtsaFields("Suggested VIN").Trim.ToUpper
             End If
 
             If Not String.IsNullOrWhiteSpace(nhtsaSuggestedVin) AndAlso nhtsaSuggestedVin.Length = 17 Then
@@ -272,8 +292,8 @@ Public Class Form1
                 btnCheckCorrectedVin.Visible = True
 
             ElseIf _lastNhtsaFields IsNot Nothing AndAlso _lastNhtsaFields.ContainsKey("Possible Values") Then
-                Dim possibleValues As String = _lastNhtsaFields("Possible Values").Trim()
-                Dim suggestedVin As String = ApplyPossibleValues(_lastInputVin, possibleValues)
+                Dim possibleValues = _lastNhtsaFields("Possible Values").Trim
+                Dim suggestedVin = ApplyPossibleValues(_lastInputVin, possibleValues)
                 If suggestedVin <> _lastInputVin Then
                     lblStatus.Text = $"✓ Year digit '{actualChar}' confirmed correct for {modelYear}. " &
                                      $"⚠ VDS issue — possible values: {possibleValues} → Suggested VIN: {suggestedVin}"
@@ -295,14 +315,14 @@ Public Class Form1
         Else
             ' Year digit is wrong — build a corrected VIN with the right year char
             ' and recalculate the check digit
-            Dim correctedChars() As Char = _lastInputVin.ToCharArray()
+            Dim correctedChars = _lastInputVin.ToCharArray
             correctedChars(9) = expectedChar(0)
-            Dim tempVin As String = New String(correctedChars)
+            Dim tempVin = New String(correctedChars)
             Dim cr = VinCheckDigit(tempVin)
             If cr.expectedCheckDigit.Length > 0 Then
                 correctedChars(8) = cr.expectedCheckDigit(0)
             End If
-            Dim correctedVin As String = New String(correctedChars)
+            Dim correctedVin = New String(correctedChars)
 
             lblStatus.Text = $"✗ Position 10 mismatch: found '{actualChar}', expected '{expectedChar}' for {modelYear}. " &
                              $"Suggested corrected VIN: {correctedVin}"
@@ -343,8 +363,8 @@ Public Class Form1
     ' -----------------------------------------------------------------------
     '  CHECK CORRECTED VIN BUTTON
     ' -----------------------------------------------------------------------
-    Private Sub btnCheckCorrectedVin_Click(sender As Object, e As EventArgs) Handles btnCheckCorrectedVin.Click
-        Dim suggested As String = If(btnCheckCorrectedVin.Tag?.ToString(), "").Trim().ToUpper()
+    Private Sub btnCheckCorrectedVin_Click(sender As Object, e As EventArgs)
+        Dim suggested = If(btnCheckCorrectedVin.Tag?.ToString, "").Trim.ToUpper
         If suggested.Length <> 17 Then
             MessageBox.Show("Corrected VIN is not valid (not 17 characters).", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -381,10 +401,10 @@ Public Class Form1
     ' -----------------------------------------------------------------------
     '  CONNECTOR PANEL PAINT
     ' -----------------------------------------------------------------------
-    Private Sub pnlConnector_Paint(sender As Object, e As PaintEventArgs) Handles pnlConnector.Paint
+    Private Sub pnlConnector_Paint(sender As Object, e As PaintEventArgs)
         If discrepantRowIndices.Count = 0 Then Return
 
-        Dim g As Graphics = e.Graphics
+        Dim g = e.Graphics
         g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
 
         Dim arrowPen As New Pen(Color.Crimson, 2)
@@ -392,32 +412,32 @@ Public Class Form1
         Dim matchPen As New Pen(Color.FromArgb(100, 180, 180, 180), 1)
         matchPen.DashStyle = Drawing2D.DashStyle.Dot
 
-        Dim panelWidth As Integer = pnlConnector.Width
+        Dim panelWidth = pnlConnector.Width
 
         Dim GetPanelY = Function(dgv As DataGridView, rowIdx As Integer) As Integer
-                            Dim rect As Rectangle = dgv.GetRowDisplayRectangle(rowIdx, True)
+                            Dim rect = dgv.GetRowDisplayRectangle(rowIdx, True)
                             Dim midInDgv As New Point(0, rect.Top + rect.Height \ 2)
-                            Dim screenPt As Point = dgv.PointToScreen(midInDgv)
+                            Dim screenPt = dgv.PointToScreen(midInDgv)
                             Return pnlConnector.PointToClient(screenPt).Y
                         End Function
 
-        For i As Integer = 0 To Math.Min(dgv1.Rows.Count, dgv2.Rows.Count) - 1
-            Dim rect1 As Rectangle = dgv1.GetRowDisplayRectangle(i, True)
-            Dim rect2 As Rectangle = dgv2.GetRowDisplayRectangle(i, True)
+        For i = 0 To Math.Min(dgv1.Rows.Count, dgv2.Rows.Count) - 1
+            Dim rect1 = dgv1.GetRowDisplayRectangle(i, True)
+            Dim rect2 = dgv2.GetRowDisplayRectangle(i, True)
             If rect1.Height = 0 OrElse rect2.Height = 0 Then Continue For
-            Dim y1 As Integer = GetPanelY(dgv1, i)
-            Dim y2 As Integer = GetPanelY(dgv2, i)
+            Dim y1 = GetPanelY(dgv1, i)
+            Dim y2 = GetPanelY(dgv2, i)
             g.DrawBezier(matchPen, New Point(0, y1), New Point(panelWidth \ 2, y1),
                          New Point(panelWidth \ 2, y2), New Point(panelWidth, y2))
         Next
 
         For Each rowIdx In discrepantRowIndices
             If rowIdx >= dgv1.Rows.Count OrElse rowIdx >= dgv2.Rows.Count Then Continue For
-            Dim rect1 As Rectangle = dgv1.GetRowDisplayRectangle(rowIdx, True)
-            Dim rect2 As Rectangle = dgv2.GetRowDisplayRectangle(rowIdx, True)
+            Dim rect1 = dgv1.GetRowDisplayRectangle(rowIdx, True)
+            Dim rect2 = dgv2.GetRowDisplayRectangle(rowIdx, True)
             If rect1.Height = 0 OrElse rect2.Height = 0 Then Continue For
-            Dim y1 As Integer = GetPanelY(dgv1, rowIdx)
-            Dim y2 As Integer = GetPanelY(dgv2, rowIdx)
+            Dim y1 = GetPanelY(dgv1, rowIdx)
+            Dim y2 = GetPanelY(dgv2, rowIdx)
             g.DrawBezier(arrowPen, New Point(0, y1), New Point(panelWidth \ 2, y1),
                          New Point(panelWidth \ 2, y2), New Point(panelWidth, y2))
         Next
@@ -519,10 +539,70 @@ Public Class Form1
     ' -----------------------------------------------------------------------
     '  STUB HANDLERS
     ' -----------------------------------------------------------------------
-    Private Sub txtVIN_TextChanged(sender As Object, e As EventArgs) Handles txtVIN.TextChanged
+    Private Sub txtVIN_TextChanged(sender As Object, e As EventArgs)
     End Sub
 
-    Private Sub dgv1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv1.CellContentClick
+    Private Sub dgv1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+    End Sub
+
+    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+    Private Sub btnSqlQuery_Click(sender As Object, e As EventArgs) Handles btnSqlQuery.Click
+        Dim sql = txtSql.Text.Trim()
+
+        'If Not sql.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase) Then
+        '    MessageBox.Show("Only SELECT queries are allowed.", "Restricted", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    Return
+        'End If
+
+        'If String.IsNullOrWhiteSpace(sql) Then
+        '    MessageBox.Show("Please enter a SQL query.", "Empty Query", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    Return
+        'End If
+
+        Try
+            DataGridView1.Columns.Clear()
+            DataGridView1.Rows.Clear()
+
+            Using conn As New MySqlConnection(ConnectionString)
+                conn.Open()
+                Using cmd As New MySqlCommand(sql, conn)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+
+                        ' Build columns from result schema
+                        For i As Integer = 0 To reader.FieldCount - 1
+                            DataGridView1.Columns.Add(reader.GetName(i), reader.GetName(i))
+                        Next
+
+                        ' Populate rows
+                        Dim rowCount As Integer = 0
+                        While reader.Read()
+                            Dim row(reader.FieldCount - 1) As Object
+                            For i As Integer = 0 To reader.FieldCount - 1
+                                row(i) = If(reader.IsDBNull(i), "", reader.GetValue(i).ToString())
+                            Next
+                            DataGridView1.Rows.Add(row)
+                            rowCount += 1
+                        End While
+
+                        MessageBox.Show($"Query returned {rowCount} row(s).", "Done",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End Using
+                End Using
+            End Using
+
+        Catch ex As MySqlException
+            MessageBox.Show($"MySQL error:{Environment.NewLine}{ex.Message}",
+                            "Query Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show($"Unexpected error:{Environment.NewLine}{ex.Message}",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 End Class

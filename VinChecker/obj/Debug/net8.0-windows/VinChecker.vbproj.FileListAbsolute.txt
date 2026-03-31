@@ -30,3 +30,4 @@ C:\Users\hqaqish\source\repos\VinChecker\VinChecker\bin\Debug\net8.0-windows\run
 C:\Users\hqaqish\source\repos\VinChecker\VinChecker\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
 C:\Users\hqaqish\source\repos\VinChecker\VinChecker\obj\Debug\net8.0-windows\VinChecker.vbproj.AssemblyReference.cache
 C:\Users\hqaqish\source\repos\VinChecker\VinChecker\obj\Debug\net8.0-windows\VinChecker.vbproj.Up2Date
+C:\Users\hqaqish\source\repos\VinChecker\VinChecker\obj\Debug\net8.0-windows\VinChecker.sourcelink.json

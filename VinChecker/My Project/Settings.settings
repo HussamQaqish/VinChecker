@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=auditware5;Port=3306;Database=mvcextract;Uid=hqaqish;Pwd=NJd3pNJd3p;</Value>
+      <Value Profile="(Default)">Server=auditware5;Port=3306;Database=mvcextract;Uid=npalko;pwd=njdep;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
