@@ -27,7 +27,7 @@ Public Class Form1
         {2025, "S"}, {2026, "T"}, {2027, "V"}, {2028, "W"}, {2029, "X"},
         {2030, "Y"}
     }
-
+    Private Const SafeModePassword As String = "Admin"
     Private ReadOnly Property ConnectionString As String
         Get
             Return My.Settings.ConnectionString
@@ -80,12 +80,39 @@ Public Class Form1
         AddHandler dgv2.Scroll, Sub(s, e2) pnlConnector.Invalidate()
 
         pnlConnector.BackColor = Color.FromArgb(245, 245, 245)
-
+        ' Inside Form1_Load, add this line:
+        chkSafeMode.Checked = True
         txtYear.Visible = False
         Label5.Visible = False
         btnCheckCorrectedVin.Visible = False
         btnCheckYear.Visible = False
 
+    End Sub
+    Private Function HashPassword(password As String) As String
+        Using sha256 = System.Security.Cryptography.SHA256.Create()
+            Dim bytes = System.Text.Encoding.UTF8.GetBytes(password)
+            Dim hash = sha256.ComputeHash(bytes)
+            Return Convert.ToBase64String(hash)
+        End Using
+    End Function
+    Private Sub chkSafeMode_CheckedChanged(sender As Object, e As EventArgs) Handles chkSafeMode.CheckedChanged
+        If chkSafeMode.Checked Then Return
+
+        Dim input = InputBox("Enter admin password to disable Safe Mode:", "Admin Authentication", "")
+
+        Dim inputHash = HashPassword(input)
+        Dim storedHash = My.Settings.SafeModePasswordHash
+
+        If inputHash <> storedHash Then
+            RemoveHandler chkSafeMode.CheckedChanged, AddressOf chkSafeMode_CheckedChanged
+            chkSafeMode.Checked = True
+            AddHandler chkSafeMode.CheckedChanged, AddressOf chkSafeMode_CheckedChanged
+
+            If Not String.IsNullOrEmpty(input) Then
+                MessageBox.Show("Incorrect password.", "Access Denied",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        End If
     End Sub
     ' -----------------------------------------------------------------------
     '  GRID SETUP
@@ -536,34 +563,22 @@ Public Class Form1
         End If
     End Function
 
-    ' -----------------------------------------------------------------------
-    '  STUB HANDLERS
-    ' -----------------------------------------------------------------------
-    Private Sub txtVIN_TextChanged(sender As Object, e As EventArgs)
-    End Sub
 
-    Private Sub dgv1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
-    End Sub
 
-    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
-
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
-    End Sub
     Private Sub btnSqlQuery_Click(sender As Object, e As EventArgs) Handles btnSqlQuery.Click
         Dim sql = txtSql.Text.Trim()
 
-        'If Not sql.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase) Then
-        '    MessageBox.Show("Only SELECT queries are allowed.", "Restricted", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '    Return
-        'End If
+        If chkSafeMode.Checked Then
+            If Not sql.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase) Then
+                MessageBox.Show("Only SELECT queries are allowed.", "Restricted", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
 
-        'If String.IsNullOrWhiteSpace(sql) Then
-        '    MessageBox.Show("Please enter a SQL query.", "Empty Query", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        '    Return
-        'End If
+        If String.IsNullOrWhiteSpace(sql) Then
+            MessageBox.Show("Please enter a SQL query.", "Empty Query", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
         Try
             DataGridView1.Columns.Clear()

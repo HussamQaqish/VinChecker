@@ -40,10 +40,11 @@ Partial Class Form1
         txtVIN = New TextBox()
         btnCheck = New Button()
         TabPage2 = New TabPage()
+        chkSafeMode = New CheckBox()
+        txtSql = New RichTextBox()
         DataGridView1 = New DataGridView()
         btnSqlQuery = New Button()
         Label6 = New Label()
-        txtSql = New RichTextBox()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(dgv2, ComponentModel.ISupportInitialize).BeginInit()
@@ -219,6 +220,7 @@ Partial Class Form1
         ' 
         ' TabPage2
         ' 
+        TabPage2.Controls.Add(chkSafeMode)
         TabPage2.Controls.Add(txtSql)
         TabPage2.Controls.Add(DataGridView1)
         TabPage2.Controls.Add(btnSqlQuery)
@@ -230,6 +232,24 @@ Partial Class Form1
         TabPage2.TabIndex = 1
         TabPage2.Text = "DataBase Connection"
         TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' chkSafeMode
+        ' 
+        chkSafeMode.AutoSize = True
+        chkSafeMode.Location = New Point(176, 73)
+        chkSafeMode.Name = "chkSafeMode"
+        chkSafeMode.Size = New Size(82, 19)
+        chkSafeMode.TabIndex = 5
+        chkSafeMode.Text = "Safe Mode"
+        chkSafeMode.UseVisualStyleBackColor = True
+        ' 
+        ' txtSql
+        ' 
+        txtSql.Location = New Point(10, 178)
+        txtSql.Name = "txtSql"
+        txtSql.Size = New Size(415, 189)
+        txtSql.TabIndex = 4
+        txtSql.Text = ""
         ' 
         ' DataGridView1
         ' 
@@ -256,14 +276,6 @@ Partial Class Form1
         Label6.Size = New Size(93, 15)
         Label6.TabIndex = 1
         Label6.Text = "Enter SQL Query"
-        ' 
-        ' txtSql
-        ' 
-        txtSql.Location = New Point(10, 178)
-        txtSql.Name = "txtSql"
-        txtSql.Size = New Size(415, 189)
-        txtSql.TabIndex = 4
-        txtSql.Text = ""
         ' 
         ' Form1
         ' 
@@ -305,5 +317,6 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents txtSql As RichTextBox
+    Friend WithEvents chkSafeMode As CheckBox
 
 End Class

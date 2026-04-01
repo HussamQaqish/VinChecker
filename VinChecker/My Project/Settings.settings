@@ -5,5 +5,8 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Server=auditware5;Port=3306;Database=mvcextract;Uid=npalko;pwd=njdep;</Value>
     </Setting>
+    <Setting Name="SafeModePasswordHash" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BxI+H0gjVsQV9oRAejuHI+ELLLwLj81igsqdN8nBGrw=</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

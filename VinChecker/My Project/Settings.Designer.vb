@@ -65,6 +65,18 @@ Namespace My
                 Me("ConnectionString") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("BxI+H0gjVsQV9oRAejuHI+ELLLwLj81igsqdN8nBGrw=")>  _
+        Public Property SafeModePasswordHash() As String
+            Get
+                Return CType(Me("SafeModePasswordHash"),String)
+            End Get
+            Set
+                Me("SafeModePasswordHash") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
