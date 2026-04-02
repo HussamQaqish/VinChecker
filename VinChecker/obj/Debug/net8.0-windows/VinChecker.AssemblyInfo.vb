@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("VinChecker"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60daec6f2374b344ed0817ea58c6219c91e4d725"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62556ed90e9ca3b127e61f3249ea761518e80fee"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("VinChecker"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("VinChecker"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _

@@ -45,18 +45,29 @@ Partial Class Form1
         DataGridView1 = New DataGridView()
         btnSqlQuery = New Button()
         Label6 = New Label()
+        TabPage3 = New TabPage()
+        Label7 = New Label()
+        RichTextBox1 = New RichTextBox()
+        Button1 = New Button()
+        RichTextBox2 = New RichTextBox()
+        Button2 = New Button()
+        Label8 = New Label()
+        PictureBox1 = New PictureBox()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(dgv2, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgv1, ComponentModel.ISupportInitialize).BeginInit()
         TabPage2.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        TabPage3.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' TabControl1
         ' 
         TabControl1.Controls.Add(TabPage1)
         TabControl1.Controls.Add(TabPage2)
+        TabControl1.Controls.Add(TabPage3)
         TabControl1.Location = New Point(-2, 2)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
@@ -277,6 +288,92 @@ Partial Class Form1
         Label6.TabIndex = 1
         Label6.Text = "Enter SQL Query"
         ' 
+        ' TabPage3
+        ' 
+        TabPage3.Controls.Add(PictureBox1)
+        TabPage3.Controls.Add(Label8)
+        TabPage3.Controls.Add(RichTextBox2)
+        TabPage3.Controls.Add(Button2)
+        TabPage3.Controls.Add(Label7)
+        TabPage3.Controls.Add(RichTextBox1)
+        TabPage3.Controls.Add(Button1)
+        TabPage3.Location = New Point(4, 24)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(914, 559)
+        TabPage3.TabIndex = 2
+        TabPage3.Text = "File Mover"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label7.Location = New Point(212, 171)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(69, 37)
+        Label7.TabIndex = 2
+        Label7.Text = "--->"
+        ' 
+        ' RichTextBox1
+        ' 
+        RichTextBox1.BackColor = Color.MediumBlue
+        RichTextBox1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        RichTextBox1.ForeColor = SystemColors.Window
+        RichTextBox1.Location = New Point(59, 161)
+        RichTextBox1.Name = "RichTextBox1"
+        RichTextBox1.Size = New Size(132, 68)
+        RichTextBox1.TabIndex = 1
+        RichTextBox1.Text = "Step one:" & vbLf & vbLf & "Creating the Folder in the V Drive"
+        ' 
+        ' Button1
+        ' 
+        Button1.Location = New Point(80, 235)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(87, 32)
+        Button1.TabIndex = 0
+        Button1.Text = "Create Folder"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' RichTextBox2
+        ' 
+        RichTextBox2.BackColor = Color.MediumBlue
+        RichTextBox2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        RichTextBox2.ForeColor = SystemColors.Window
+        RichTextBox2.Location = New Point(287, 161)
+        RichTextBox2.Name = "RichTextBox2"
+        RichTextBox2.Size = New Size(168, 68)
+        RichTextBox2.TabIndex = 4
+        RichTextBox2.Text = "Step two:" & vbLf & vbLf & "Moving Files into the new folder to tidy up the Drive"
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(308, 235)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(87, 32)
+        Button2.TabIndex = 3
+        Button2.Text = "Move Files"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label8.Location = New Point(461, 171)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(69, 37)
+        Label8.TabIndex = 5
+        Label8.Text = "--->"
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Image = My.Resources.Resources.OIP
+        PictureBox1.Location = New Point(577, 116)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(168, 180)
+        PictureBox1.TabIndex = 6
+        PictureBox1.TabStop = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -293,6 +390,9 @@ Partial Class Form1
         TabPage2.ResumeLayout(False)
         TabPage2.PerformLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        TabPage3.ResumeLayout(False)
+        TabPage3.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
     Friend WithEvents TabControl1 As TabControl
@@ -318,5 +418,13 @@ Partial Class Form1
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents txtSql As RichTextBox
     Friend WithEvents chkSafeMode As CheckBox
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents RichTextBox1 As RichTextBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents RichTextBox2 As RichTextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents PictureBox1 As PictureBox
 
 End Class
