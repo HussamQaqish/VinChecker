@@ -6,7 +6,10 @@
       <Value Profile="(Default)">Server=auditware5;Port=3306;Database=mvcextract;Uid=npalko;pwd=njdep;</Value>
     </Setting>
     <Setting Name="SafeModePasswordHash" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BxI+H0gjVsQV9oRAejuHI+ELLLwLj81igsqdN8nBGrw=</Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PasswordFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">"V:\air\ETEP\Vinchecker\vinchecker_pass.txt"</Value>
     </Setting>
   </Settings>
 </SettingsFile>

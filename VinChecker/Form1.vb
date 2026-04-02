@@ -67,6 +67,7 @@ Public Class Form1
     '    btnCheckYear.Visible = False
     'End Sub
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        EnsurePasswordInitialized()
         ' Explicitly rewire Tab 1 button handlers
         AddHandler btnCheck.Click, AddressOf btnCheck_Click
         AddHandler btnCheckYear.Click, AddressOf btnCheckYear_Click
@@ -94,7 +95,45 @@ Public Class Form1
             Dim hash = sha256.ComputeHash(bytes)
             Return Convert.ToBase64String(hash)
         End Using
+
+
     End Function
+
+
+    Private Sub EnsurePasswordInitialized()
+        ' Only fetch from network if no hash stored yet
+        If Not String.IsNullOrWhiteSpace(My.Settings.SafeModePasswordHash) Then Return
+
+        Try
+            Dim filePath = My.Settings.PasswordFilePath
+
+            If String.IsNullOrWhiteSpace(filePath) OrElse Not System.IO.File.Exists(filePath) Then
+                MessageBox.Show(
+                "Safe Mode password file not found." & Environment.NewLine &
+                $"Expected location: {filePath}" & Environment.NewLine & Environment.NewLine &
+                "Please contact your administrator.",
+                "Setup Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            Dim rawPassword = System.IO.File.ReadAllText(filePath).Trim()
+
+            If String.IsNullOrWhiteSpace(rawPassword) Then
+                MessageBox.Show("Password file is empty. Please contact your administrator.",
+                            "Setup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            My.Settings.SafeModePasswordHash = HashPassword(rawPassword)
+            My.Settings.Save()
+
+        Catch ex As Exception
+            MessageBox.Show($"Could not initialize Safe Mode password:{Environment.NewLine}{ex.Message}",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
     Private Sub chkSafeMode_CheckedChanged(sender As Object, e As EventArgs) Handles chkSafeMode.CheckedChanged
         If chkSafeMode.Checked Then Return
 

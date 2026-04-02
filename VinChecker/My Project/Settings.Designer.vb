@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("BxI+H0gjVsQV9oRAejuHI+ELLLwLj81igsqdN8nBGrw=")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property SafeModePasswordHash() As String
             Get
                 Return CType(Me("SafeModePasswordHash"),String)
@@ -76,6 +76,15 @@ Namespace My
             Set
                 Me("SafeModePasswordHash") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("""V:\air\ETEP\Vinchecker\vinchecker_pass.txt""")>  _
+        Public ReadOnly Property PasswordFilePath() As String
+            Get
+                Return CType(Me("PasswordFilePath"),String)
+            End Get
         End Property
     End Class
 End Namespace
